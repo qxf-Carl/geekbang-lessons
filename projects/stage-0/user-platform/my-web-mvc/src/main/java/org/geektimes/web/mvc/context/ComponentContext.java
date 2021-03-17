@@ -1,7 +1,4 @@
-package org.geektimes.context;
-
-import org.geektimes.function.ThrowableAction;
-import org.geektimes.function.ThrowableFunction;
+package org.geektimes.web.mvc.context;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -12,6 +9,8 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
+
+import org.geektimes.web.mvc.function.*;
 
 /**
  * 组件上下文（Web 应用全局使用）
@@ -98,11 +97,11 @@ public class ComponentContext {
 
     private void injectComponents(Object component, Class<?> componentClass) {
         Stream.of(componentClass.getDeclaredFields())
-                .filter(field -> {
-                    int mods = field.getModifiers();
-                    return !Modifier.isStatic(mods) &&
-                            field.isAnnotationPresent(Resource.class);
-                }).forEach(field -> {
+              .filter(field -> {
+                  int mods = field.getModifiers();
+                  return !Modifier.isStatic(mods) &&
+                          field.isAnnotationPresent(Resource.class);
+              }).forEach(field -> {
             Resource resource = field.getAnnotation(Resource.class);
             String resourceName = resource.name();
             Object injectedObject = lookupComponent(resourceName);
@@ -117,11 +116,11 @@ public class ComponentContext {
 
     private void processPostConstruct(Object component, Class<?> componentClass) {
         Stream.of(componentClass.getMethods())
-                .filter(method ->
-                        !Modifier.isStatic(method.getModifiers()) &&      // 非 static
-                                method.getParameterCount() == 0 &&        // 没有参数
-                                method.isAnnotationPresent(PostConstruct.class) // 标注 @PostConstruct
-                ).forEach(method -> {
+              .filter(method ->
+                      !Modifier.isStatic(method.getModifiers()) &&      // 非 static
+                              method.getParameterCount() == 0 &&        // 没有参数
+                              method.isAnnotationPresent(PostConstruct.class) // 标注 @PostConstruct
+              ).forEach(method -> {
             // 执行目标方法
             try {
                 method.invoke(component);
@@ -156,7 +155,7 @@ public class ComponentContext {
      * @return 返回
      * @see ThrowableFunction#apply(Object)
      */
-    protected <R> R executeInContext(ThrowableFunction<Context, R> function, boolean ignoredException) {
+    public <R> R executeInContext(ThrowableFunction<Context, R> function, boolean ignoredException) {
         return executeInContext(this.envContext, function, ignoredException);
     }
 

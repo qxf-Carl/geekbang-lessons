@@ -1,6 +1,6 @@
 package org.geektimes.projects.user.web.listener;
 
-import org.geektimes.context.ComponentContext;
+import org.geektimes.web.mvc.context.ComponentContext;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.sql.DBConnectionManager;
 
@@ -24,9 +24,9 @@ public class TestingListener implements ServletContextListener {
         ComponentContext context = ComponentContext.getInstance();
         DBConnectionManager dbConnectionManager = context.getComponent("bean/DBConnectionManager");
         dbConnectionManager.getConnection();
-        testPropertyFromServletContext(sce.getServletContext());
-        testPropertyFromJNDI(context);
-        testUser(dbConnectionManager.getEntityManager());
+//        testPropertyFromServletContext(sce.getServletContext());
+//        testPropertyFromJNDI(context);
+//        testUser(dbConnectionManager.getEntityManager());
         logger.info("所有的 JNDI 组件名称：[");
         context.getComponentNames().forEach(logger::info);
         logger.info("]");

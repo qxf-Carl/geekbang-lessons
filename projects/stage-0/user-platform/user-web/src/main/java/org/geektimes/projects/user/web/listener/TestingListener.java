@@ -1,14 +1,17 @@
 package org.geektimes.projects.user.web.listener;
 
+import org.geektimes.projects.user.management.UserManager;
 import org.geektimes.web.mvc.context.ComponentContext;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.sql.DBConnectionManager;
 
+import javax.management.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import java.lang.management.ManagementFactory;
 import java.util.logging.Logger;
 
 /**
@@ -27,6 +30,13 @@ public class TestingListener implements ServletContextListener {
 //        testPropertyFromServletContext(sce.getServletContext());
 //        testPropertyFromJNDI(context);
 //        testUser(dbConnectionManager.getEntityManager());
+
+        try {
+            registerJmxBean();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         logger.info("所有的 JNDI 组件名称：[");
         context.getComponentNames().forEach(logger::info);
         logger.info("]");
@@ -55,6 +65,24 @@ public class TestingListener implements ServletContextListener {
         entityManager.persist(user);
         transaction.commit();
         System.out.println(entityManager.find(User.class, user.getId()));
+    }
+
+    private void registerJmxBean() throws Exception {
+        // 获取平台 MBean Server
+        MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
+        // 为 UserMXBean 定义 ObjectName
+        ObjectName objectName = new ObjectName("org.geektimes.projects.user.management:type=User");
+        // 创建 UserMBean 实例
+        mBeanServer.registerMBean(mockUserManager(), objectName);
+    }
+
+    public UserManager mockUserManager() {
+        User user = new User();
+        user.setName("小马哥");
+        user.setPassword("******");
+        user.setEmail("mercyblitz@gmail.com");
+        user.setPhoneNumber("abcdefg");
+        return new UserManager(user);
     }
 
     @Override

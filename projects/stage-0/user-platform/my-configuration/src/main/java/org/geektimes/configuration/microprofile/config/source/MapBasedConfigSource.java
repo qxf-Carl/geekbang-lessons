@@ -29,18 +29,20 @@ public abstract class MapBasedConfigSource implements ConfigSource {
      *
      * @return 不可变 Map 类型的配置数据
      */
+    @Override
     public final Map<String, String> getProperties() {
-        Map<String,String> configData = new HashMap<>();
+        Map<String, String> configData = new HashMap<>();
         try {
             prepareConfigData(configData);
         } catch (Throwable cause) {
-            throw new IllegalStateException("准备配置数据发生错误",cause);
+            throw new IllegalStateException("准备配置数据发生错误", cause);
         }
         return Collections.unmodifiableMap(configData);
     }
 
     /**
      * 准备配置数据
+     *
      * @param configData
      * @throws Throwable
      */

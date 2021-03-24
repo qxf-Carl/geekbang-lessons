@@ -19,7 +19,7 @@ public class ServletContextConfigInitializer implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext servletContext = servletContextEvent.getServletContext();
-        ServletContextConfigSource servletContextConfigSource = new ServletContextConfigSource(servletContext);
+//        ServletContextConfigSource servletContextConfigSource = new ServletContextConfigSource(servletContext);
         // 获取当前 ClassLoader
         ClassLoader classLoader = servletContext.getClassLoader();
         ConfigProviderResolver configProviderResolver = ConfigProviderResolver.instance();
@@ -31,7 +31,7 @@ public class ServletContextConfigInitializer implements ServletContextListener {
         // 通过发现配置源（动态的）
         configBuilder.addDiscoveredConverters();
         // 增加扩展配置源（基于 Servlet 引擎）
-        configBuilder.withSources(servletContextConfigSource);
+//        configBuilder.withSources(servletContextConfigSource);
         // 获取 Config
         Config config = configBuilder.build();
         // 注册 Config 关联到当前 ClassLoader

@@ -6,38 +6,38 @@
          metadata-complete="true" version="2.5">
 
     <!-- 请确保这个 Listener 放置在首位 -->
-    <listener>
-        <listener-class>org.geektimes.web.mvc.listener.ComponentContextInitializerListener</listener-class>
-    </listener>
+<!--    <listener>-->
+<!--        <listener-class>org.geektimes.web.mvc.listener.ComponentContextInitializerListener</listener-class>-->
+<!--    </listener>-->
 
-    <listener>
-        <listener-class>org.geektimes.projects.user.web.listener.TestingListener</listener-class>
-    </listener>
+<!--    <listener>-->
+<!--        <listener-class>org.geektimes.projects.user.web.listener.TestingListener</listener-class>-->
+<!--    </listener>-->
 
-    <servlet>
-        <servlet-name>default</servlet-name>
-        <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
-        <init-param>
-            <param-name>debug</param-name>
-            <param-value>0</param-value>
-        </init-param>
-        <init-param>
-            <param-name>listings</param-name>
-            <param-value>false</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+<!--    <servlet>-->
+<!--        <servlet-name>default</servlet-name>-->
+<!--        <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>-->
+<!--        <init-param>-->
+<!--            <param-name>debug</param-name>-->
+<!--            <param-value>0</param-value>-->
+<!--        </init-param>-->
+<!--        <init-param>-->
+<!--            <param-name>listings</param-name>-->
+<!--            <param-value>false</param-value>-->
+<!--        </init-param>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
 
     <!-- The mapping for the default servlet -->
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.css</url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>default</servlet-name>-->
+<!--        <url-pattern>*.css</url-pattern>-->
+<!--    </servlet-mapping>-->
 
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.js</url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>default</servlet-name>-->
+<!--        <url-pattern>*.js</url-pattern>-->
+<!--    </servlet-mapping>-->
 
     <servlet>
         <servlet-name>jolokia-agent</servlet-name>

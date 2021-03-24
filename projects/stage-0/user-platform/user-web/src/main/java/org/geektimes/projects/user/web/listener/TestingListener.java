@@ -11,6 +11,7 @@ import javax.persistence.EntityTransaction;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 import java.lang.management.ManagementFactory;
 import java.util.logging.Logger;
 
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
  * 测试用途
  */
 @Deprecated
+@WebListener
 public class TestingListener implements ServletContextListener {
 
     private Logger logger = Logger.getLogger(this.getClass().getName());

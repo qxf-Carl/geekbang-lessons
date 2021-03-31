@@ -76,7 +76,6 @@ class HttpPostInvocation implements Invocation {
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod(HttpMethod.POST);
             setRequestHeaders(connection);
-            //TODO Store entity
             storeEntity(connection);
             // TODO Set the cookies
             int statusCode = connection.getResponseCode();
@@ -132,7 +131,13 @@ class HttpPostInvocation implements Invocation {
     }
 
     private void storeEntity(HttpURLConnection connection) {
-        //TODO...
+        connection.setDoOutput(true);
+        connection.setDoInput(true);
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()))) {
+            writer.write(entity.getEntity().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

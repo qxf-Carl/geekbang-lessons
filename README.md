@@ -113,5 +113,7 @@ public class WebServletContainerInitializer implements ServletContainerInitializ
 
 #### Week05
  - [x] 修复本程序 org.geektimes.reactive.streams 包下
- - [x] [继续完善 my-rest-client POST 方法](https://github.com/qxf-Carl/geekbang-lessons/blob/homework-week05/projects/stage-0/user-platform/my-rest-client/src/main/java/org/geektimes/rest/client/HttpPostInvocation.java)
+ - [x] [继续完善 my-rest-client POST 方法](https://github.com/qxf-Carl/geekbang-lessons/blob/homework-week05/projects/stage-0/user-platform/my-rest-client/src/main/java/org/geektimes/rest/client/HttpPostInvocation.java) 
+     
+     [测试用例](https://github.com/qxf-Carl/geekbang-lessons/blob/homework-week05/projects/stage-0/user-platform/my-rest-client/src/test/java/org/geektimes/rest/demo/RestClientDemo.java)
  - [ ] (可选) 读一下 Servlet 3.0 关于 Servlet 异步 AsyncContext
